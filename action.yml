@@ -2,15 +2,15 @@ name: 'HardenedBSD CI'
 description: 'Run CI commands in a HardenedBSD virtual machine'
 inputs:
   release:
-    description: 'The HardenedBSD release (default: 15.0-RELEASE)'
+    description: 'The HardenedBSD release'
     required: false
-    default: '15.0-RELEASE'
+    default: '15-STABLE'
   arch:
-    description: 'CPU architecture (default: amd64)'
+    description: 'CPU architecture'
     required: false
     default: 'amd64'
   filesystem:
-    description: 'Filesystem type (default: zfs)'
+    description: 'Filesystem'
     required: false
     default: 'zfs'
   run:
