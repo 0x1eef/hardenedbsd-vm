@@ -1,7 +1,9 @@
 package curl
 
 import (
+	"errors"
 	"fmt"
+	"os"
 	"os/exec"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/cmd"
@@ -17,19 +19,26 @@ var (
 	}
 )
 
-func Run() (string, error) {
-	if downloadURL, err := url(); err != nil {
-		return "", err
-	} else {
-		args := []string{"-L", "-o", Destination, downloadURL}
-		return Destination, cmd.Run(exec.Command("curl", args...))
-	}
-}
-
-func url() (string, error) {
-	u, ok := URLMap[input.Release]
+func Source() (string, error) {
+	url, ok := URLMap[input.Release]
 	if !ok {
 		return "", fmt.Errorf("unknown release: %s", input.Release)
 	}
-	return u, nil
+	return url, nil
+}
+
+func Run() (string, error) {
+	var (
+		url string
+		err error
+	)
+	if url, err = Source(); err != nil {
+		return "", err
+	}
+	if _, err = os.Stat(Destination); errors.Is(err, os.ErrNotExist) {
+		args := []string{"-L", "-o", Destination, url}
+		return Destination, cmd.Run(exec.Command("curl", args...))
+	} else {
+		return Destination, nil
+	}
 }
