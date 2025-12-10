@@ -33,6 +33,12 @@ runs:
       with:
         go-version: '1.25'
 
+    - name: Set permissions
+      run: |
+        sudo chmod o+x /home/runner
+        sudo chmod o+x /home/runner/work
+        sudo chmod -R o+x /home/runner/work/hardenedbsd-vm
+
     - name: Build VM
       shell: bash
       run: |
