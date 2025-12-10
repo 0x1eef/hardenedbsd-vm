@@ -7,17 +7,22 @@ import (
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/apt"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/curl"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/virt"
+	"github.com/hardenedbsd/hardenedbsd-vm/internal/xz"
 )
 
 func main() {
 	var (
-		image string
-		err   error
+		archive string
+		image   string
+		err     error
 	)
 	if err := apt.Run(); err != nil {
 		abort("error: %s\n", err)
 	}
-	if image, err = curl.Run(); err != nil {
+	if archive, err = curl.Run(); err != nil {
+		abort("error: %s\n", err)
+	}
+	if image, err = xz.Run(archive); err != nil {
 		abort("error: %s\n", err)
 	}
 	if err := virt.Run(image); err != nil {

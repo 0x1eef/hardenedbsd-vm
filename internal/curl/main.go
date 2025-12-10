@@ -9,10 +9,10 @@ import (
 )
 
 var (
-	Destination = "image.raw"
+	Destination = "hardenedbsd-vm.raw.xz"
 	URLMap      = map[string]string{
 		"16-CURRENT": "FIXME",
-		"15-STABLE":  "https://github.com/0x1eef/hardenedbsd-builder/actions/runs/20037038355/artifacts/4800738241",
+		"15-STABLE":  "https://github.com/0x1eef/hardenedbsd-builder/releases/download/hardenedbsd-15-latest/hardenedbsd-15.0-ufs-amd64.raw.xz",
 		"14-STABLE":  "FIXME",
 	}
 )

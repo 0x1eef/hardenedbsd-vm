@@ -2,13 +2,13 @@ package xz
 
 import (
 	"os/exec"
+	"strings"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/cmd"
 )
 
-func Run() error {
-	args := []string{
-		"-d", "image.qcow2.xz",
-	}
-	return cmd.Run(exec.Command("xz", args...))
+func Run(archive string) (string, error) {
+	args := []string{"-d", archive}
+	image, _ := strings.CutSuffix(archive, ".xz")
+	return image, cmd.Run(exec.Command("xz", args...))
 }
