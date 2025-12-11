@@ -10,8 +10,6 @@ import (
 
 func Run(ip string) error {
 	args := []string{
-		"-p", "",
-		"ssh",
 		"-o", "StrictHostKeyChecking=no",
 		"-o", "UserKnownHostsFile=/dev/null",
 		fmt.Sprintf("root@%s", ip),
@@ -20,7 +18,7 @@ func Run(ip string) error {
 	attempts := 0
 	max := 100
 	for {
-		if err := cmd.Run(exec.Command("sshpass", args...)); err != nil {
+		if err := cmd.Run(exec.Command("ssh", args...)); err != nil {
 			attempts++
 			if attempts >= max {
 				return err
