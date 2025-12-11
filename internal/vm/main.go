@@ -2,6 +2,7 @@ package vm
 
 import (
 	"bytes"
+	"fmt"
 	"os/exec"
 	"regexp"
 	"time"
@@ -41,8 +42,10 @@ func create(vm, image string) error {
 }
 
 func waitForIP(vmName string, maxAttempts int) (string, error) {
+	fmt.Println("Wait for VM to be assigned an IP")
 	re := regexp.MustCompile(`ipv4\s+([0-9.]+)\/`)
 	for attempt := 1; attempt <= maxAttempts; attempt++ {
+		fmt.Printf("Attempt %d/%d\n", attempt, maxAttempts)
 		cmd := exec.Command("sudo", "virsh", "domifaddr", vmName)
 		out, err := cmd.Output()
 		if err == nil {

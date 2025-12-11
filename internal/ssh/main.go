@@ -3,6 +3,7 @@ package ssh
 import (
 	"fmt"
 	"os/exec"
+	"time"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/cmd"
 )
@@ -25,6 +26,7 @@ func Run(ip string) error {
 			if attempts >= max {
 				return err
 			}
+			time.Sleep(1 * time.Second)
 		} else {
 			break
 		}
