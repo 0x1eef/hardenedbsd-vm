@@ -7,13 +7,14 @@ import (
 )
 
 func Run() error {
-	fmt.Println("VM doesn't have IP yet, please wait up to 200 seconds")
-	if err := cmd.Run(exec.Command("bash", "socat.sh")); err != nil {
+	fmt.Println("VM doesn't have IP yet, please wait up to 100 seconds")
+	if out, err := exec.Command("bash", "socat.sh").Output(); err != nil {
 		return err
+	} else {
+		go func() {
+			dest := fmt.Sprintf("TCP:%s:22", string(out))
+			exec.Command("socat", "TCP-LISTEN:2222,fork,reuseaddr", dest).Run()
+		}()
+		return nil
 	}
-	//go func() {
-	//	dest := fmt.Sprintf("TCP:%s:22", string(cmd))
-	//	exec.Command("socat", "TCP-LISTEN:2222,fork,reuseaddr", dest).Run()
-	//}()
-	return nil
 }
