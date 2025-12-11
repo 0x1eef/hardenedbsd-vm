@@ -14,7 +14,6 @@ var (
 		"qemu-kvm",
 		"libosinfo-bin",
 		"sshpass",
-		"socat",
 	}
 )
 
