@@ -14,6 +14,7 @@ var (
 	config = _ssh.ClientConfig{
 		User: "root",
 		Auth: []_ssh.AuthMethod{_ssh.Password("")},
+		HostKeyCallback: _ssh.InsecureIgnoreHostKey(),
 	}
 )
 
