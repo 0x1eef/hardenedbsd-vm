@@ -14,7 +14,7 @@ func Run() error {
 	}
 	go func() {
 		dest := fmt.Sprintf("TCP:%s:22", string(cmd))
-		exec.Command("socat", "TCP-LISTEN:2222,fork,reuseaddr"+dest).Run()
+		exec.Command("socat", "TCP-LISTEN:2222,fork,reuseaddr", dest).Run()
 	}()
 	return nil
 }
