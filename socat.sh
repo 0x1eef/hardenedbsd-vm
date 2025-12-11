@@ -2,7 +2,7 @@
 
 ##
 # vars
-max=100
+max=200
 attempt=1
 
 ##
