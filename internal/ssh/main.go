@@ -14,7 +14,6 @@ func Run(ip string) error {
 		"ssh",
 		"-o", "StrictHostKeyChecking=no",
 		"-o", "UserKnownHostsFile=/dev/null",
-		"-p", "2222",
 		fmt.Sprintf("root@%s", ip),
 		"true",
 	}
