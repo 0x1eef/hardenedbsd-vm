@@ -13,7 +13,7 @@ var (
 	max    = 100
 	config = _ssh.ClientConfig{
 		User: "root",
-		Auth: []_ssh.AuthMethod{_ssh.Password("")},
+		Auth: []_ssh.AuthMethod{_ssh.Password("beastie")},
 		HostKeyCallback: _ssh.InsecureIgnoreHostKey(),
 	}
 )
