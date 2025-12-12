@@ -11,7 +11,7 @@ import (
 
 func Run(archive string) (string, error) {
 	args := []string{"-d", archive}
-	image, _ := strings.CutSuffix(archive, ".xz")
+	image := strings.TrimSuffix(archive, ".xz")
 	if _, err := os.Stat(image); errors.Is(err, os.ErrNotExist) {
 		return image, cmd.Run(exec.Command("xz", args...))
 	} else {
