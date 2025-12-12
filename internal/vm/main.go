@@ -53,9 +53,11 @@ func waitForIP(vmName string, maxAttempts int) (string, error) {
 			if len(matches) == 2 {
 				fmt.Printf("The VM has an IP: %s\n", matches[1])
 				return string(matches[1]), nil
+			} else {
+				fmt.Printf("No IP address found yet: %s\n", out)
 			}
 		}
-		time.Sleep(1 * time.Second)
+		time.Sleep(2 * time.Second)
 	}
 	return "", exec.ErrNotFound
 }
