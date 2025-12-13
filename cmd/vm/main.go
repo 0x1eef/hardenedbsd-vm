@@ -8,7 +8,7 @@ import (
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/curl"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/input"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/keys"
-	"github.com/hardenedbsd/hardenedbsd-vm/internal/scp"
+	"github.com/hardenedbsd/hardenedbsd-vm/internal/rsync"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/script"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/ssh"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/vm"
@@ -63,7 +63,7 @@ func main() {
 		fmt.Println("User input saved as script.sh")
 	})
 	group("Copy payload to VM", func() {
-		if err := scp.CopyToVM(ip); err != nil {
+		if err := rsync.CopyToVM(ip); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("Payload copied to VM")

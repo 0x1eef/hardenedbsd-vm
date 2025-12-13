@@ -13,7 +13,7 @@ var (
 		"virt-manager",
 		"qemu-kvm",
 		"libosinfo-bin",
-		"sshpass",
+		"rsync",
 	}
 )
 
