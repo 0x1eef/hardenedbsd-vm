@@ -12,6 +12,7 @@ import (
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/ssh"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/vm"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/xz"
+	"github.com/hardenedbsd/hardenedbsd-vm/internal/scp"
 )
 
 func main() {
@@ -60,6 +61,12 @@ func main() {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("User input saved as script.sh")
+	})
+	group("Copy payload to VM", func() {
+		if err := scp.CopyToVM(ip); err != nil {
+			abort("error: %s\n", err)
+		}
+		fmt.Println("Payload copied to VM")
 	})
 	group("Run payload", func() {
 		defer session.Close()
