@@ -14,11 +14,10 @@ func CopyToVM(ip string) error {
 		ok     bool
 	)
 	if wrkdir, ok = os.LookupEnv("GITHUB_WORKSPACE"); !ok {
-		return fmt.Errorf("GITHUB_WORKSPACE not set")
+		return fmt.Errorf("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
 	}
 	src := wrkdir
 	dest := fmt.Sprintf("runner@%s:%s", ip, wrkdir)
 	args := []string{"-r", "-o", "StrictHostKeyChecking=no", src, dest}
 	return cmd.Run(exec.Command("scp", args...))
 }
-

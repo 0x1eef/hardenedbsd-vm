@@ -8,11 +8,11 @@ import (
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/curl"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/input"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/keys"
+	"github.com/hardenedbsd/hardenedbsd-vm/internal/scp"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/script"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/ssh"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/vm"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/xz"
-	"github.com/hardenedbsd/hardenedbsd-vm/internal/scp"
 )
 
 func main() {
