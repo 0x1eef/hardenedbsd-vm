@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/apt"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/curl"
@@ -70,10 +71,16 @@ func main() {
 	})
 	group("Run payload", func() {
 		defer session.Close()
-		if out, err := session.CombinedOutput("/bin/sh script.sh"); err != nil {
-			abort("error: %s\n", err)
+		if wrkdir, ok := os.LookupEnv("GITHUB_WORKSPACE"); !ok {
+			abort("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
 		} else {
-			fmt.Println(string(out))
+			userScript := path.Join(wrkdir, "script.sh")
+			command := fmt.Sprintf("/bin/sh %s", userScript)
+			if out, err := session.CombinedOutput(command); err != nil {
+				abort("error: %s\n", err)
+			} else {
+				fmt.Println(string(out))
+			}
 		}
 	})
 }
