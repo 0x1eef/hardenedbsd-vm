@@ -44,16 +44,16 @@ func create(vm, image string) error {
 func waitForIP(vmName string, maxAttempts int) (string, error) {
 	re := regexp.MustCompile(`ipv4\s+([0-9.]+)\/`)
 	for attempt := 1; attempt <= maxAttempts; attempt++ {
-		fmt.Printf("Discover IP. Attempt %d/%d:\n", attempt, maxAttempts)
+		fmt.Printf("Discover IP (attempt %d/%d)\n", attempt, maxAttempts)
 		cmd := exec.Command("sudo", "virsh", "domifaddr", vmName)
 		out, err := cmd.Output()
 		if err == nil {
 			matches := re.FindSubmatch(bytes.TrimSpace(out))
 			if len(matches) == 2 {
-				fmt.Printf("The VM has an IP: %s\n", matches[1])
+				fmt.Printf("The VM has an IP (%s)\n", matches[1])
 				return string(matches[1]), nil
 			} else {
-				fmt.Println("No IP found yet")
+				fmt.Printf("No IP found yet\n\n%s\n", out)
 			}
 		}
 		time.Sleep(2 * time.Second)
