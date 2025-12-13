@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	Release    = get("INPUT_RELEASE", "16-CURRENT")
+	Release    = get("INPUT_RELEASE", "15-STABLE")
 	Arch       = get("INPUT_ARCH", "amd64")
 	Filesystem = get("INPUT_FILESYSTEM", "zfs")
 	Memory     = get("INPUT_MEMORY", "4G")
