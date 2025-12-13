@@ -7,6 +7,7 @@ import (
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/apt"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/curl"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/input"
+	"github.com/hardenedbsd/hardenedbsd-vm/internal/keys"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/script"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/ssh"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/vm"
@@ -38,6 +39,12 @@ func main() {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("VM extracted:", image)
+	})
+	group("Install SSH keys", func() {
+		if err := keys.Install(); err != nil {
+			abort("error: %s\n", err)
+		}
+		fmt.Println("SSH keys installed")
 	})
 	group("Run VM", func() {
 		if ip, err = vm.Run(image); err != nil {
