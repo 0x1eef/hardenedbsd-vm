@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	dest = "hardenedbsd-vm.raw.xz"
+	dest = "/tmp/hardenedbsd-vm.raw.xz"
 	base = "https://github.com/0x1eef/hardenedbsd-builder/releases/download/"
 	urls = map[string]string{
 		"16-CURRENT": fmt.Sprintf("%s/16CURRENT_UFS_AMD64_MODIFIED/hardenedbsd-vm.raw.xz", base),
