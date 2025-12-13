@@ -55,7 +55,7 @@ func authMethod() (_ssh.AuthMethod, error) {
 	if err != nil {
 		return nil, err
 	}
-	keyPath := path.Join(home, ".ssh", "id_25519")
+	keyPath := path.Join(home, ".ssh", "id_ed25519")
 	key, err := os.ReadFile(keyPath)
 	if err != nil {
 		return nil, err
