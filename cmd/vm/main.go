@@ -28,7 +28,7 @@ func main() {
 		fmt.Println("Tools installed")
 	})
 	group("Download VM", func() {
-		if archive, err = curl.Run(); err != nil {
+		if archive, err = curl.Run(input.Release); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("VM downloaded:", archive)
