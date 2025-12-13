@@ -11,10 +11,10 @@ import (
 func CopyToVM(ip string) error {
 	var (
 		wrkdir string
-		ok     bool
+		err    error
 	)
-	if wrkdir, ok = os.LookupEnv("GITHUB_WORKSPACE"); !ok {
-		return fmt.Errorf("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
+	if wrkdir, err = os.Getwd(); err != nil {
+		return err
 	}
 	src := wrkdir
 	dest := fmt.Sprintf("runner@%s:~/", ip)

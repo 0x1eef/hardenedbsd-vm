@@ -52,6 +52,7 @@ func main() {
 		if ip, err = vm.Run(image); err != nil {
 			abort("error: %s\n", err)
 		}
+		fmt.Println("Please wait...")
 		if session, err = ssh.Run(ip); err != nil {
 			abort("error: %s\n", err)
 		}
