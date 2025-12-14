@@ -65,7 +65,7 @@ func main() {
 		fmt.Println("SSH session established")
 	})
 	group("Save payload", func() {
-		payload := fmt.Sprintf("#!/bin/sh\nset -x\ncd %s\n%s\n", wrkdir, input.Run)
+		payload := fmt.Sprintf("#!/bin/sh\nset -ex\ncd %s\n%s\n", wrkdir, input.Run)
 		err = os.WriteFile(path.Join(wrkdir, "script.sh"), []byte(payload), 0755)
 		if err != nil {
 			abort("error: %s\n", err)
