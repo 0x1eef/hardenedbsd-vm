@@ -20,12 +20,14 @@ func main() {
 		ip      string
 		archive string
 		image   string
+		wrkdir  string
+		ok      bool
 		session *ssh.Session
 		err     error
 	)
 	group("Environment", func() {
-		for _, env := range os.Environ() {
-			fmt.Println(env)
+		if wrkdir, ok = os.LookupEnv("GITHUB_WORKSPACE"); !ok {
+			abort("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
 		}
 	})
 	group("Install tools", func() {
@@ -64,7 +66,7 @@ func main() {
 	})
 	group("Save payload", func() {
 		payload := fmt.Sprintf("#!bin/sh\nset -x\n%s\n", input.Run)
-		err = os.WriteFile("script.sh", []byte(payload), 0644)
+		err = os.WriteFile(path.Join(wrkdir, "script.sh"), []byte(payload), 0644)
 		if err != nil {
 			abort("error: %s\n", err)
 		} else {
@@ -79,16 +81,12 @@ func main() {
 	})
 	group("Run payload", func() {
 		defer session.Close()
-		if wrkdir, ok := os.LookupEnv("GITHUB_WORKSPACE"); !ok {
-			abort("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
+		shell := fmt.Sprintf("/bin/sh %s", path.Join(wrkdir, "script.sh"))
+		fmt.Printf("Payload: %s\n", shell)
+		if out, err := session.CombinedOutput(shell); err != nil {
+			abort("error: %s\n", err)
 		} else {
-			shell := fmt.Sprintf("/bin/sh %s", path.Join(wrkdir, "script.sh"))
-			fmt.Printf("Payload: %s\n", shell)
-			if out, err := session.CombinedOutput(shell); err != nil {
-				abort("error: %s\n", err)
-			} else {
-				fmt.Println(string(out))
-			}
+			fmt.Println(string(out))
 		}
 	})
 }

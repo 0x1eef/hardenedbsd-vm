@@ -42,10 +42,10 @@ func newClientConfig() (*_ssh.ClientConfig, error) {
 		return nil, err
 	}
 	return &_ssh.ClientConfig{
-		User: "runner",
-		Auth: []_ssh.AuthMethod{authMethod},
+		User:            "runner",
+		Auth:            []_ssh.AuthMethod{authMethod},
 		HostKeyCallback: _ssh.InsecureIgnoreHostKey(),
-		Timeout: 1 * time.Second,
+		Timeout:         1 * time.Second,
 	}, nil
 }
 
