@@ -6,8 +6,8 @@ import (
 
 var (
 	Release    = get("INPUT_RELEASE", "16-CURRENT")
-	Arch       = get("INPUT_ARCH", "amd64")
-	Filesystem = get("INPUT_FILESYSTEM", "zfs")
+	Arch       = "amd64"
+	Filesystem = "ufs"
 	Memory     = get("INPUT_MEMORY", "4G")
 	Run        = get("INPUT_RUN", "uname -a")
 )

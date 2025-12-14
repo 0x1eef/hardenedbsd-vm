@@ -5,6 +5,14 @@ inputs:
     description: 'The HardenedBSD release'
     required: false
     default: '15-STABLE'
+  arch:
+    description: 'CPU architecture'
+    required: false
+    default: 'amd64'
+  filesystem:
+    description: 'Filesystem'
+    required: false
+    default: 'ufs'
   run:
     description: 'The command to run in the HardenedBSD VM'
     required: false

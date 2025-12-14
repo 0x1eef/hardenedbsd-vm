@@ -58,6 +58,12 @@ This can be `16-CURRENT` or `15-STABLE`.
 * run<br>
 The command to run on the hardenedBSD virtual machine. <br>
 This can be any valid shell command(s).
+* arch<br>
+The CPU architecture.<br>
+This is always amd64 for now.
+* filesystem<br>
+The filesystem type.<br>
+This is always ufs for now.
 
 ## Sources
 
