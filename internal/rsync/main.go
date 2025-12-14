@@ -11,18 +11,13 @@ import (
 
 func CopyToVM(ip string) error {
 	var (
-		fromdir string
-		todir   string
-		err     error
-		ok      bool
+		dir string
+		ok  bool
 	)
-	if fromdir, err = os.Getwd(); err != nil {
-		return err
-	}
-	if todir, ok = os.LookupEnv("GITHUB_WORKSPACE"); !ok {
+	if dir, ok = os.LookupEnv("GITHUB_WORKSPACE"); !ok {
 		return fmt.Errorf("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
 	}
-	dest := fmt.Sprintf("runner@%s:%s/", ip, filepath.Dir(todir))
-	args := []string{"-rvah", "--mkpath", "-e", "ssh -o StrictHostKeyChecking=no", fromdir, dest}
+	dest := fmt.Sprintf("runner@%s:%s/", ip, filepath.Dir(dir))
+	args := []string{"-rvah", "--mkpath", "-e", "ssh -o StrictHostKeyChecking=no", dir, dest}
 	return cmd.Run(exec.Command("rsync", args...))
 }
