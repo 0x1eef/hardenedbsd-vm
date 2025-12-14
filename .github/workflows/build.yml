@@ -18,6 +18,7 @@ jobs:
     - name: Run test
       uses: ./
       with:
-        release: '15-STABLE'
+        release: '16-CURRENT'
         run: |
           uname -a
+          mdo -u root whoami
