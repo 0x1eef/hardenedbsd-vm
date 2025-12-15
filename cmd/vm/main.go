@@ -23,7 +23,7 @@ func main() {
 		session                         *ssh.Session
 		err                             error
 	)
-	group("Save hardenedbsd-vm.sh", func() {
+	step("Save hardenedbsd-vm.sh", func() {
 		if dir, ok = os.LookupEnv("GITHUB_WORKSPACE"); !ok {
 			abort("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
 		}
@@ -35,48 +35,48 @@ func main() {
 			fmt.Printf("OK: %s", path.Base(script))
 		}
 	})
-	group("Install tools", func() {
+	step("Install tools", func() {
 		if err := apt.Run(); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("Tools installed")
 	})
-	group("Download VM", func() {
+	step("Download VM", func() {
 		if archive, err = curl.Run(input.Release); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("VM downloaded:", archive)
 	})
-	group("Extract VM", func() {
+	step("Extract VM", func() {
 		if image, err = xz.Run(archive); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("VM extracted:", image)
 	})
-	group("Boot VM", func() {
+	step("Boot VM", func() {
 		if ip, err = vm.Run(image); err != nil {
 			abort("error: %s\n", err)
 		}
 	})
-	group("Install SSH keys", func() {
+	step("Install SSH keys", func() {
 		if err := keys.Install(); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("SSH keys installed")
 	})
-	group("Establish SSH session", func() {
+	step("Establish SSH session", func() {
 		if session, err = ssh.Run(ip); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("SSH session established")
 	})
-	group("Run rsync", func() {
+	step("Run rsync", func() {
 		if err := rsync.CopyToVM(ip, dir); err != nil {
 			abort("error: %s\n", err)
 		}
 		fmt.Println("Files copied to VM")
 	})
-	group("Run payload", func() {
+	step("Run payload", func() {
 		defer session.Close()
 		fmt.Printf("payload: %s\n", script)
 		if out, err := session.CombinedOutput(script); err != nil {
@@ -87,7 +87,7 @@ func main() {
 	})
 }
 
-func group(label string, fn func()) {
+func step(label string, fn func()) {
 	fmt.Printf("::group::%s\n", label)
 	fn()
 	fmt.Println("::endgroup::")
