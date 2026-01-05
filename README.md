@@ -54,7 +54,7 @@ respectively but might be configurable in the future.
 
 * release<br>
 The hardenedBSD release to use. <br>
-This can be `16-CURRENT` or `15-STABLE`.
+This can be `16-CURRENT`. Eventually, we would like to support `15-STABLE` as well.
 * run<br>
 The command to run on the hardenedBSD virtual machine. <br>
 This can be any valid shell command(s).
