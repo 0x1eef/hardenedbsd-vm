@@ -79,10 +79,10 @@ func main() {
 	step("Run payload", func() {
 		defer session.Close()
 		fmt.Printf("payload: %s\n", script)
-		if out, err := session.CombinedOutput(script); err != nil {
-			abort("error: \n%s%s\n\n", string(out), err)
-		} else {
-			fmt.Println(string(out))
+		session.Stdout = os.Stdout
+		session.Stderr = os.Stderr
+		if err := session.Run(script); err != nil {
+			abort("error: \n%s\n\n", err)
 		}
 	})
 }
