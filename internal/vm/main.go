@@ -19,7 +19,7 @@ func Run(image string) (string, error) {
 	if err := create(vm, image); err != nil {
 		return "", err
 	}
-	if ip, err = waitForIP(vm, 100); err != nil {
+	if ip, err = waitForIP(vm, 25); err != nil {
 		return "", err
 	}
 	return ip, nil
