@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"os/user"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/apt"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/curl"
@@ -25,7 +26,11 @@ func main() {
 	)
 	step("Save payload", func() {
 		if dir, ok = os.LookupEnv("GITHUB_WORKSPACE"); !ok {
-			abort("GITHUB_WORKSPACE not set\nEnvironment: %v", os.Environ())
+			u, err := user.Current()
+			if err != nil {
+				abort("error: cannot get current user (%s)\n", err)
+			}
+			dir = u.HomeDir
 		}
 		script = path.Join(dir, "hardenedbsd-vm.sh")
 		payload = fmt.Appendf(payload, "#!/bin/sh\nset -ex\ncd %s\n%s\n", dir, input.Run)
