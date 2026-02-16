@@ -10,7 +10,7 @@ import (
 )
 
 func Run(archive string) (string, error) {
-	args := []string{"-T", "0", "-d", archive}
+	args := []string{"-k", "-T", "0", "-d", archive}
 	image := strings.TrimSuffix(archive, ".xz")
 	if _, err := os.Stat(image); errors.Is(err, os.ErrNotExist) {
 		return image, cmd.Run(exec.Command("xz", args...))
