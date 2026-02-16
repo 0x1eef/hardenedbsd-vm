@@ -58,6 +58,12 @@ func main() {
 		}
 		fmt.Println("VM extracted:", image)
 	})
+	step("Remove VM archive", func() {
+		if err := os.Remove(archive); err != nil {
+			abort("error: %s", err)
+		}
+		fmt.Println("Removed VM archive: ", archive)
+	})
 	step("Boot VM", func() {
 		if ip, err = vm.Run(image); err != nil {
 			abort("error: %s\n", err)
