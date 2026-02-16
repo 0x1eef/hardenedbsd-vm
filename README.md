@@ -76,10 +76,10 @@ user although root privileges can be obtained with the
 [mdo(1)](https://man.freebsd.org/cgi/man.cgi?mdo)
 utility (eg `mdo -u root <command>`).
 
-It is recommended to use pkg-static instead of pkg for installing
-packages because the former is less error prone, especially on
-hardenedBSD where the virtual machine could be more recent than
-the package repository. For example:
+The environment is configured to use pkg-static instead of pkg
+for installing packages because the former is less error prone,
+especially on hardenedBSD where the virtual machine could be
+more recent than the package repository. For example:
 
 ```sh
 mdo -u root pkg-static install -y <package>
