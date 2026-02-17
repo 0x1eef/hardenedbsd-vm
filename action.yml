@@ -4,7 +4,7 @@ inputs:
   release:
     description: 'The hardenedBSD release'
     required: false
-    default: '15-STABLE'
+    default: '16-CURRENT'
   arch:
     description: 'CPU architecture'
     required: false

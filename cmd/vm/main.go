@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"path"
 	"os/user"
+	"path"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/apt"
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/curl"
