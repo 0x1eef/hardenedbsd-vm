@@ -31,7 +31,7 @@ func Run(image string) (string, error) {
 func create(vm, image string) error {
 	args := []string{
 		"--name", vm,
-		"--memory", "6144",
+		"--memory", input.Mem,
 		"--vcpus", strconv.Itoa(runtime.NumCPU()),
 		"--arch", input.Arch,
 		"--disk", "path=" + image + ",format=raw,bus=virtio",

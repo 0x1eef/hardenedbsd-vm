@@ -64,6 +64,9 @@ This is always x86_64 for now.
 * filesystem<br>
 The filesystem type.<br>
 This is always ufs for now.
+* mem<br>
+The amount of memory to allocate for the VM.
+This defaults to 6144MB.
 
 #### Environment
 

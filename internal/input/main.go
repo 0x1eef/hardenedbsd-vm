@@ -8,7 +8,7 @@ var (
 	Release    = get("INPUT_RELEASE", "16-CURRENT")
 	Arch       = "x86_64"
 	Filesystem = "ufs"
-	Memory     = get("INPUT_MEMORY", "4G")
+	Mem        = get("INPUT_MEM", "6144")
 	Run        = get("INPUT_RUN", "uname -a")
 )
 

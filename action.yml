@@ -2,21 +2,25 @@ name: 'hardenedBSD CI'
 description: 'Run CI commands in a hardenedBSD virtual machine'
 inputs:
   release:
-    description: 'The hardenedBSD release'
+    description: 'The VM release'
     required: false
     default: '16-CURRENT'
   arch:
-    description: 'CPU architecture'
+    description: 'The VM CPU'
     required: false
     default: 'x86_64'
   filesystem:
-    description: 'Filesystem'
+    description: 'The VM filesystem'
     required: false
     default: 'ufs'
   run:
-    description: 'The command to run in the hardenedBSD VM'
+    description: 'The command(s) execute on the VM'
     required: false
     default: 'uname -a'
+  mem:
+    description: 'The amount of memory to allocate to the VM'
+    required: false
+    default: '6144'
 
 branding:
   icon: 'activity'
@@ -40,3 +44,4 @@ runs:
         INPUT_RELEASE: ${{ inputs.release }}
         INPUT_ARCH: ${{ inputs.arch }}
         INPUT_FILESYSTEM: ${{ inputs.filesystem }}
+        INPUT_MEM: ${{ inputs.mem }}
