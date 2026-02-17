@@ -47,26 +47,24 @@ jobs:
 #### Inputs
 
 All GitHub actions accept inputs via the "with" directive. This
-action provides a couple of input variables that can be used this
-way. In the future, more variables may be supported. Certain variables,
-like the CPU architecture and filesystem type are always amd64 and ufs
-respectively but might be configurable in the future.
+action provides the following input variables. Some are
+hardcoded for now but others can be customized:
 
-* release<br>
-The hardenedBSD release to use. <br>
-This can be `16-CURRENT`. Eventually, we would like to support `15-STABLE` as well.
 * run<br>
 The command to run on the hardenedBSD virtual machine. <br>
 This can be any valid shell command(s).
+* mem<br>
+The amount of memory to allocate for the VM. <br>
+This defaults to 6144MB but can be customized.
+* release<br>
+The hardenedBSD release to use. <br>
+This is always `16-CURRENT` for now.
 * arch<br>
 The CPU architecture.<br>
 This is always x86_64 for now.
 * filesystem<br>
 The filesystem type.<br>
 This is always ufs for now.
-* mem<br>
-The amount of memory to allocate for the VM.
-This defaults to 6144MB.
 
 #### Environment
 
