@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/cmd"
+	"github.com/hardenedbsd/hardenedbsd-vm/internal/input"
 )
 
 func Run(image string) (string, error) {
@@ -32,7 +33,7 @@ func create(vm, image string) error {
 		"--name", vm,
 		"--memory", "6144",
 		"--vcpus", strconv.Itoa(runtime.NumCPU()),
-		"--arch", "x86_64",
+		"--arch", input.Arch,
 		"--disk", "path=" + image + ",format=raw,bus=virtio",
 		"--os-variant", "freebsd13.1",
 		"--network", "network=default,model=e1000",

@@ -8,7 +8,7 @@ inputs:
   arch:
     description: 'CPU architecture'
     required: false
-    default: 'amd64'
+    default: 'x86_64'
   filesystem:
     description: 'Filesystem'
     required: false
