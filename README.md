@@ -56,6 +56,9 @@ This can be any valid shell command(s).
 * mem<br>
 The amount of memory to allocate for the VM. <br>
 This defaults to 6144MB but can be customized.
+* cpu<br>
+The number of CPU cores to allocate for the VM. <br>
+This defaults to all available cores but can be customized.
 * release<br>
 The hardenedBSD release to use. <br>
 This is always `16-CURRENT` for now.
@@ -88,8 +91,7 @@ mdo -u root pkg-static install -y <package>
 
 Commands are written to a shell script with the name `hardenedbsd-vm.sh`,
 and if a repository has a file with the same name the file will be
-overwritten. Please choose a different name to avoid conflicts. Eventually
-we would like to find a more robust solution.
+overwritten. Please choose a different name to avoid conflicts. 
 
 ## Sources
 

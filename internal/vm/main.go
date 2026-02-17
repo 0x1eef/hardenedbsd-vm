@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"os/exec"
 	"regexp"
-	"runtime"
-	"strconv"
 	"time"
 
 	"github.com/hardenedbsd/hardenedbsd-vm/internal/cmd"
@@ -32,7 +30,7 @@ func create(vm, image string) error {
 	args := []string{
 		"--name", vm,
 		"--memory", input.Mem,
-		"--vcpus", strconv.Itoa(runtime.NumCPU()),
+		"--vcpus", input.Cpu,
 		"--arch", input.Arch,
 		"--disk", "path=" + image + ",format=raw,bus=virtio",
 		"--os-variant", "freebsd13.1",
