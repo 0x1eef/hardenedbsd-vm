@@ -44,7 +44,9 @@ jobs:
           make test
 ```
 
-#### Inputs
+## Inputs
+
+#### Options
 
 All GitHub actions accept inputs via the "with" directive. This
 action provides the following input variables. Some are
@@ -69,16 +71,24 @@ This is always x86_64 for now.
 The filesystem type.<br>
 This is always ufs for now.
 
-#### Environment
+## Environment
 
-This action is setup to boot ubuntu first, and then a hardenedBSD
-virtual machine is booted from a modified virtual machine image that
-is optimized for GitHub actions.
+#### VM
+
+At the time of writing, the virtual machine has 4 vCPU cores
+and 6GB of RAM by default. This can be decreased but not
+increased unless GitHub increase the resources available
+on the host machine. The VM image is 14GB in size and that
+leaves roughly 5GB of free space for the user to use.
+
+#### Permissions
 
 The virtual machine is configured to run your commands as the `runner`
 user although root privileges can be obtained with the
 [mdo(1)](https://man.freebsd.org/cgi/man.cgi?mdo)
 utility (eg `mdo -u root <command>`).
+
+#### pkg-static
 
 The environment is configured to use pkg-static instead of pkg
 for installing packages because the former is less error prone,
@@ -88,10 +98,6 @@ more recent than the package repository. For example:
 ```sh
 mdo -u root pkg-static install -y <package>
 ```
-
-Commands are written to a shell script with the name `hardenedbsd-vm.sh`,
-and if a repository has a file with the same name the file will be
-overwritten. Please choose a different name to avoid conflicts. 
 
 ## Sources
 
