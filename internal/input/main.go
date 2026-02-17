@@ -17,7 +17,7 @@ var (
 
 func get(key, def string) string {
 	v, ok := os.LookupEnv(key)
-	if !ok {
+	if v == "" || !ok {
 		return def
 	} else {
 		return v
