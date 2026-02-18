@@ -78,8 +78,8 @@ This is always ufs for now.
 At the time of writing, the virtual machine has 4 vCPU cores
 and 6GB of RAM by default. This can be decreased but not
 increased unless GitHub increase the resources available
-on the host machine. The VM image is 14GB in size and that
-leaves roughly 5GB of free space for the user to use.
+on the host machine. The VM image is 80GB in size and that
+leaves roughly 65GB of free space for the user to use.
 
 #### Permissions
 
