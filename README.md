@@ -94,7 +94,8 @@ It is recommended to use pkg-static instead of pkg
 for installing packages because the former is less error prone
 in the virtual machine environment &ndash; where the base system
 can be more recent than the package repository or vice versa and
-that can sometimes cause errors related to dynamic libraries.
+that can sometimes cause errors related to dynamic libraries or
+complaints about version mismatches.
 
 This is a quirk of how the virtual machine images and pkg repositories
 are built manually by two different people, and I try to minimize
