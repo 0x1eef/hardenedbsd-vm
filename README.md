@@ -110,6 +110,7 @@ mdo -u root pkg-static install -y <package>
 
 * [github.com/@0x1eef](https://github.com/0x1eef/hardenedbsd-vm)
 * [git.hardenedBSD.org/@0x1eef](https://git.hardenedBSD.org/0x1eef/hardenedbsd-vm)
+* [bsd.cafe/@0x1eef](https://brew.bsd.cafe/0x1eef/hardenedbsd-vm)
 
 ## License
 
