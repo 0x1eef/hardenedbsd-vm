@@ -20,5 +20,7 @@ jobs:
       with:
         release: '16-CURRENT'
         run: |
-          uname -a
+          whoami
+          mdo -u root uname -a
           mdo -u root whoami
+          mdo -u root df -h
