@@ -59,10 +59,14 @@ func main() {
 		fmt.Println("VM extracted:", image)
 	})
 	step("Remove VM archive", func() {
-		if err := os.Remove(archive); err != nil {
-			abort("error: %s", err)
+		if _, err := os.Stat(archive); os.IsNotExist(err) {
+			fmt.Fprintf(os.Stderr, "warn: archive does not exist")
+		} else {
+			if err := os.Remove(archive); err != nil {
+				abort("error: %s", err)
+			}
+			fmt.Println("Removed VM archive: ", archive)
 		}
-		fmt.Println("Removed VM archive: ", archive)
 	})
 	step("Boot VM", func() {
 		if ip, err = vm.Run(image); err != nil {
