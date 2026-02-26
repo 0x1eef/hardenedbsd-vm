@@ -26,7 +26,7 @@ func getString(key string, def string) string {
 }
 
 func getBool(key string, def bool) bool {
-	if b, ok  := get(key, def).(bool); ok {
+	if b, ok := get(key, def).(bool); ok {
 		return b
 	} else {
 		// This can't happen
