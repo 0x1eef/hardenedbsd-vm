@@ -81,11 +81,11 @@ func main() {
 		}
 		fmt.Println("SSH session established")
 	})
-	step("Run rsync", func() {
+	step("Sync files to VM", func() {
 		if err := rsync.CopyToVM(ip, dir); err != nil {
 			abort("error: %s\n", err)
 		}
-		fmt.Println("Files copied to VM")
+		fmt.Println("Files synced")
 	})
 	step("Run payload", func() {
 		defer session.Close()
@@ -95,6 +95,12 @@ func main() {
 		if err := session.Run(script); err != nil {
 			abort("error: \n%s\n\n", err)
 		}
+	})
+	step("Sync files from VM", func() {
+		if err := rsync.CopyFromVM(ip, dir); err != nil {
+			abort("error: %s\n", err)
+		}
+		fmt.Println("Files synced")
 	})
 }
 
