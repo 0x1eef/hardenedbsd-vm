@@ -61,6 +61,9 @@ This defaults to 6144MB but can be customized.
 * cpu<br>
 The number of CPU cores to allocate for the VM. <br>
 This defaults to all available cores but can be customized.
+* copyback<br>
+Whether to copy back the VM content to the host machine after the run. <br>
+This defaults to true. <br>
 * release<br>
 The hardenedBSD release to use. <br>
 This is always `16-CURRENT` for now.
