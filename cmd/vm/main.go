@@ -97,14 +97,14 @@ func main() {
 		}
 	})
 	step("Sync files from VM", func() {
-		if !input.CopyBack {
+		if input.CopyBack {
+			if err := rsync.CopyFromVM(ip, dir); err != nil {
+				abort("error: %s\n", err)
+			}
+			fmt.Println("Files synced")
+		} else {
 			fmt.Println("Nothing to do")
-			return
 		}
-		if err := rsync.CopyFromVM(ip, dir); err != nil {
-			abort("error: %s\n", err)
-		}
-		fmt.Println("Files synced")
 	})
 }
 
