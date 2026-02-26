@@ -60,7 +60,7 @@ func main() {
 	})
 	step("Remove VM archive", func() {
 		if _, err := os.Stat(archive); os.IsNotExist(err) {
-			fmt.Fprintf(os.Stderr, "warn: archive does not exist")
+			fmt.Fprintf(os.Stderr, "warn: archive does not exist\n")
 		} else {
 			if err := os.Remove(archive); err != nil {
 				abort("error: %s", err)
