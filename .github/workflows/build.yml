@@ -24,3 +24,4 @@ jobs:
           mdo -u root uname -a
           mdo -u root whoami
           mdo -u root df -h
+          touch teapot.txt

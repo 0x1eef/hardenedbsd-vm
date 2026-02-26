@@ -21,6 +21,10 @@ inputs:
     description: 'The amount of memory to allocate to the VM'
     required: false
     default: '6144'
+  copyback:
+    description: 'Copy files from the VM to the host'
+    required: false
+    default: true
   cpu:
     description: 'The number of CPUs to allocate to the VM'
     required: false
